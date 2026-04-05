@@ -1,0 +1,35 @@
+erDiagram
+    CATEGORIES ||--o{ MENU_ITEMS : "contains"
+    MENU_ITEMS ||--o{ ITEM_INGREDIENTS : "uses"
+    INGREDIENTS ||--o{ ITEM_INGREDIENTS : "included_in"
+
+    CATEGORIES {
+        int id PK
+        string name
+        string description
+        int sort_order
+        boolean active
+    }
+
+    MENU_ITEMS {
+        int id PK
+        int category_id FK
+        string name
+        string description
+        decimal price
+        string image_url
+        boolean is_available
+        timestamp created_at
+    }
+
+    INGREDIENTS {
+        int id PK
+        string name
+        boolean is_allergen
+    }
+
+    ITEM_INGREDIENTS {
+        int menu_item_id PK, FK
+        int ingredient_id PK, FK
+        string quantity
+    }
